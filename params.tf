@@ -39,6 +39,11 @@ variable subnet_id {
   description = "The ID of the subnet in which to create the resources."
 }
 
+variable resource_type {
+  type        = string
+  description = "The type of resource to create."
+}
+
 variable private_connections {
   type              = map(object({
     resource_id       = string  

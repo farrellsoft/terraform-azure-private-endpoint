@@ -1,11 +1,12 @@
 
 module "resource-naming" {
   source  = "app.terraform.io/Farrellsoft/resource-naming/azure"
-  version = "0.0.11"
+  version = "1.0.0"
   
   application         = var.application
   environment         = var.environment
   instance_number     = var.instance_number
+  resource_type       = var.resource_type
 }
 
 resource azurerm_private_endpoint this {

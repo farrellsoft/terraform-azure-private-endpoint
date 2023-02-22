@@ -27,3 +27,13 @@ resource azurerm_private_endpoint this {
     }
   }
 }
+
+resource azurerm_private_dns_a_record this {
+  count            = length(var.private_connections)
+
+  name                = reverse(split("/", var.private_connections[count.index].resource_id))[0]
+  zone_name           = reverse(split("/", var.private_connections[count.index].private_dns_zone_id))[0]
+  resource_group_name = split("/", var.private_connections[count.index].private_dns_zone_id)[4]
+  ttl                 = 300
+  records             = [ azurerm_private_endpoint.this.private_service_connection[count.index].private_ip_address ]
+}

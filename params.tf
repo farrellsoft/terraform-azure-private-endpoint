@@ -24,16 +24,6 @@ variable instance_number {
   default   = "001"
 }
 
-variable location {
-  type        = string
-  description = "The location where the resources will be created."
-}
-
-variable resource_group_name {
-  type        = string
-  description = "The name of the resource group in which to create the resources."
-}
-
 variable subnet_id {
   type        = string
   description = "The ID of the subnet in which to create the resources."
@@ -42,6 +32,11 @@ variable subnet_id {
 variable resource_type {
   type        = string
   description = "The type of resource to create."
+}
+
+variable resource_group_name {
+  type        = string
+  description = "The name of the resource group in which to create the private endpoint resources."
 }
 
 variable private_connections {

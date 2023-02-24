@@ -9,10 +9,15 @@ module "resource-naming" {
   resource_type       = var.resource_type
 }
 
+data azurerm_virtual_network this {
+  name                = split("/", var.subnet_id)[8]
+  resource_group_name = split("/", var.subnet_id)[4]
+}
+
 resource azurerm_private_endpoint this {
   name                = module.resource-naming.private_endpoint_name
-  location            = var.location
-  resource_group_name = var.resource_group_name
+  location            = data.azurerm_virtual_network.this.location
+  resource_group_name = local.private_endpoint_resource_group_name
   subnet_id           = var.subnet_id
 
   dynamic "private_service_connection" {

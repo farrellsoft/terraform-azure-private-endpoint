@@ -43,6 +43,7 @@ variable private_connections {
   type              = map(object({
     resource_id         = string  
     subresource_names   = list(string)
+    purpose             = optional(string, "")
     private_dns_zone_id = string
   }))
   description       = "A map of private connections to create."
